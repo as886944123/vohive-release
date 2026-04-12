@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/vohive/data
+WorkingDirectory=/opt/vohive
 ExecStart=/opt/vohive/bin/vohive -c /opt/vohive/config/config.yaml
 Restart=always
 RestartSec=3

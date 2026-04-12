@@ -152,7 +152,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=${DATA_DIR}
+WorkingDirectory=${ROOT_DIR}
 ExecStart=${BIN_PATH} -c ${CONFIG_DIR}/config.yaml
 Restart=always
 RestartSec=3
