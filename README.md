@@ -20,9 +20,10 @@ VoHive 是面向高通 4G/5G 模组场景的一体化管理与代理平台，核
 
 推荐：
 
-- EC20CEFAG
-- EC20CEFHLG
+- 移远 EC20CE 系4G模块
+- 移远 EM500Q 5G模块
 - 高通 410 WIFI板子(得debian/openwrt,需要有折腾能力)
+- 以及各类高通4G USB模组
 - 可以小黄鱼几十块买到
 
 要求：
