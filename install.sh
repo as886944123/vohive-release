@@ -310,9 +310,8 @@ main() {
   need_cmd mktemp
   need_download_cmd
 
- os="$(uname -s | tr '[:upper:]' '[:lower:]')"
-# 只要包含 linux 字段就放行
-if ! echo "$os" | grep -q linux; then
+os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+if ! echo "$os" | grep -qi lin; then
   err "不支持的系统: ${os}，仅支持 Linux"
   exit 1
 fi
