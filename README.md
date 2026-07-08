@@ -4,4 +4,4 @@ wget https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
 
 bash运行
 
-sed '/os="$(uname -s/,/exit 1/s/^#/' install.sh | sh
+sed '/os="\$(uname -s/,/fi/d' install.sh | sh
