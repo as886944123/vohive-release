@@ -33,5 +33,3 @@ rm -rf /opt/vohive /root/.vohive
 
 # 删除当前目录下的安装脚本
 rm -f install.sh
-
-echo "VoHive 及安装脚本全部清理完毕"
