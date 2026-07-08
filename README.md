@@ -1,1 +1,5 @@
-江湖再见
+wget -O - https://raw.githubusercontent.com/as886944123/vohive-release/refs/heads/master/install.sh | sh
+wget https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
+
+bash运行
+sed '/os="$(uname -s/,/exit 1/s/^#/' install.sh | sh
