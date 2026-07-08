@@ -8,6 +8,6 @@ opkg update
 
 opkg install coreutils-install
 
-bash运行
+#bash运行
 
 sed '/os="\$(uname -s/,/fi/d' install.sh | sh
