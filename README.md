@@ -10,6 +10,10 @@ opkg install coreutils-install
 
 wget https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
 
+wget -O - https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh | sh
+
+curl -fsSL https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh | sh
+
 #SSH
 
 sed '/os="$(uname -s/,/fi/d' install.sh | sh
