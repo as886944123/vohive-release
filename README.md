@@ -5,6 +5,7 @@ wget https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
 #opwenrt
 
 opkg update
+
 opkg install coreutils-install
 
 bash运行
