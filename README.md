@@ -24,13 +24,14 @@ sed '/os="$(uname -s/,/fi/d' install.sh | sh
 
 方法2
 #离线一键部署脚本
+
 TAG="v1.5.12"
 arch="arm64"
 mkdir -p /opt/vohive/bin /opt/vohive/config /opt/vohive/data /opt/vohive/logs
 wget -q https://github.com/as886944123/vohive-release/releases/download/${TAG}/vohive_${TAG}_linux_${arch} -O /opt/vohive/bin/vohive
 chmod +x /opt/vohive/bin/vohive
 
-# 生成默认配置
+
 cat > /opt/vohive/config/config.yaml <<'EOF'
 server:
   port: ":7575"
@@ -39,7 +40,7 @@ web:
   password: "admin"
 EOF
 
-# OpenWrt procd 开机自启服务
+
 cat > /etc/init.d/vohive <<'EOF'
 #!/bin/sh /etc/rc.common
 START=99
@@ -61,19 +62,12 @@ chmod +x /etc/init.d/vohive
 
 #完全删除
 
-#停止并禁用服务
+#完全删除
 
-/etc/init.d/vohive stop 2>/dev/null || true
+/etc/init.d/vohive stop || true
 
-/etc/init.d/vohive disable 2>/dev/null || true
-
-#删除程序、启动脚本
+/etc/init.d/vohive disable || true
 
 rm -f /etc/init.d/vohive /usr/bin/vohive
 
-#删除主目录、用户配置
-
-rm -rf /opt/vohive /root/.vohive
-
-#删除当前目录下的安装脚本
-rm -f install.sh
+rm -rf /opt/vohive
