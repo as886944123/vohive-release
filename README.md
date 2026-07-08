@@ -27,39 +27,10 @@ sed '/os="$(uname -s/,/fi/d' install.sh | sh
 TAG="v1.5.12"
 arch="arm64"
 mkdir -p /opt/vohive/bin /opt/vohive/config /opt/vohive/data /opt/vohive/logs
-wget -q https://github.com/as886944123/vohive-release/releases/download/v1.5.12/vohive_v1.5.12_linux_arm64 -O /opt/vohive/bin/vohive
-#wget -q https://github.com/as886944123/vohive-release/releases/download/${TAG}/vohive_${TAG}_linux_${arch} -O /opt/vohive/bin/vohive
-chmod +x /opt/vohive/bin/vohive
-cat > /opt/vohive/config/config.yaml <<'EOF'
-server:
-  port: ":7575"
-web:
-  username: "admin"
-  password: "admin"
-EOF
-cat > /etc/init.d/vohive <<'EOF'
-#!/bin/sh /etc/rc.common
-START=99
-USE_PROCD=1
-start_service() {
-    procd_open_instance
-    procd_set_param command /opt/vohive/bin/vohive -c /opt/vohive/config/config.yaml
-    procd_set_param directory /opt/vohive
-    procd_set_param respawn 3600 5 5
-    procd_set_param stdout 1
-    procd_set_param stderr 1
-    procd_close_instance
-}
-EOF
-chmod +x /etc/init.d/vohive
-/etc/init.d/vohive enable
-/etc/init.d/vohive start
-
-TAG="v1.5.12"
-arch="arm64"
-mkdir -p /opt/vohive/bin /opt/vohive/config /opt/vohive/data /opt/vohive/logs
 wget -q https://github.com/as886944123/vohive-release/releases/download/${TAG}/vohive_${TAG}_linux_${arch} -O /opt/vohive/bin/vohive
 chmod +x /opt/vohive/bin/vohive
+
+# 生成默认配置
 cat > /opt/vohive/config/config.yaml <<'EOF'
 server:
   port: ":7575"
@@ -67,6 +38,8 @@ web:
   username: "admin"
   password: "admin"
 EOF
+
+# OpenWrt procd 开机自启服务
 cat > /etc/init.d/vohive <<'EOF'
 #!/bin/sh /etc/rc.common
 START=99
@@ -81,6 +54,7 @@ start_service() {
     procd_close_instance
 }
 EOF
+
 chmod +x /etc/init.d/vohive
 /etc/init.d/vohive enable
 /etc/init.d/vohive start
