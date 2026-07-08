@@ -23,6 +23,7 @@ sed '/os="$(uname -s/,/fi/d' install.sh | sh
 
 #停止并禁用服务
 /etc/init.d/vohive stop 2>/dev/null || true
+
 /etc/init.d/vohive disable 2>/dev/null || true
 
 #删除程序、启动脚本
