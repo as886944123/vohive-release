@@ -8,7 +8,8 @@ opkg install coreutils-install
 
 #SSH
 
-wget https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
+wget -O install.sh https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh
+sh install.sh
 
 wget -O - https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install.sh | sh
 
