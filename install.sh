@@ -310,11 +310,12 @@ main() {
   need_cmd mktemp
   need_download_cmd
 
-  os="$(uname -s | tr '[:upper:]' '[:lower:]')"
-  if [ "${os}" != "linux" ]; then
-    err "不支持的系统: ${os}"
-    exit 1
-  fi
+ os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+# 只要包含 linux 字段就放行
+if ! echo "$os" | grep -q linux; then
+  err "不支持的系统: ${os}，仅支持 Linux"
+  exit 1
+fi
 
   TMP_DIR="$(mktemp -d)"
   trap 'rm -rf "${TMP_DIR}"' EXIT INT TERM
