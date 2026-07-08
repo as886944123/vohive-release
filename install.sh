@@ -68,12 +68,12 @@ need_cmd() {
 }
 
 need_download_cmd() {
-  if command -v curl >/dev/null 2>&1; then
-    DOWNLOAD_CMD="curl"
-    return 0
-  fi
   if command -v wget >/dev/null 2>&1; then
     DOWNLOAD_CMD="wget"
+    return 0
+  fi
+  if command -v curl >/dev/null 2>&1; then
+    DOWNLOAD_CMD="curl"
     return 0
   fi
   err "缺少下载命令: 需要 curl 或 wget"
@@ -233,7 +233,7 @@ LimitNOFILE=1048576
 WantedBy=multi-user.target
 EOF
 
-  run_root install -m 0644 "${tmp_unit_path}" "${SYSTEMD_SERVICE_PATH}"
+  run_root cp -f "${tmp_unit_path}" "${SYSTEMD_SERVICE_PATH}"; run_root chmod 0644 "${SYSTEMD_SERVICE_PATH}"
   run_root systemctl daemon-reload
   run_root systemctl enable vohive
   run_root systemctl restart vohive
@@ -258,7 +258,7 @@ start_service() {
 }
 EOF
 
-  run_root install -m 0755 "${tmp_init_path}" "${OPENWRT_INIT_PATH}"
+  run_root cp -f "${tmp_init_path}" "${OPENWRT_INIT_PATH}"; run_root chmod 0755 "${OPENWRT_INIT_PATH}"
   run_root "${OPENWRT_INIT_PATH}" enable
   run_root "${OPENWRT_INIT_PATH}" restart
 }
@@ -310,11 +310,11 @@ main() {
   need_cmd mktemp
   need_download_cmd
 
-os="$(uname -s | tr '[:upper:]' '[:lower:]')"
-if ! echo "$os" | grep -qi lin; then
-  err "不支持的系统: ${os}，仅支持 Linux"
-  exit 1
-fi
+  os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+  if false; then
+    err "不支持的系统: ${os}"
+    exit 1
+  fi
 
   TMP_DIR="$(mktemp -d)"
   trap 'rm -rf "${TMP_DIR}"' EXIT INT TERM
@@ -355,7 +355,7 @@ fi
     fi
   }
 
-  run_root install -m 0755 "${extracted}" "${BIN_PATH}"
+  run_root cp -f "${extracted}" "${BIN_PATH}"; run_root chmod 0755 "${BIN_PATH}"
 
   ACTIVE_PLATFORM="$(detect_platform)"
   service_registered=0
