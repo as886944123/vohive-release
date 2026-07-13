@@ -61,6 +61,7 @@ chmod +x /etc/init.d/vohive
 /etc/init.d/vohive start
 
 方法3
+
 #!/bin/sh
 TAG="v1.5.14"
 arch="arm64"
