@@ -18,7 +18,7 @@ curl -fsSL https://cdn.jsdelivr.net/gh/as886944123/vohive-release@master/install
 
 #SSH
 
-sed 's/os=/$(uname -s)/,/fi/d' install.sh | sh
+sed 's/os=/$(uname -s)/' /fi/d install.sh | sh
 
 
 
@@ -112,6 +112,7 @@ echo "访问地址：http://路由器IP:7575"
 echo "账号：admin  密码：admin"
 
 #完全删除
+
 service vohive stop 2>/dev/null; service vohive disable 2>/dev/null; rm -f /etc/init.d/vohive; rm -rf /opt/vohive /data; echo "VoHive 全部卸载干净"
 #完全删除
 
